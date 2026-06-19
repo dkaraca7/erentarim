@@ -56,7 +56,7 @@
     <section id="home" class="hero-section">
         <div class="hero-overlay"></div>
         <div class="hero-content">
-            <div class="hero-badge">Eren Tarım Güvencesiyle</div>
+            <div class="hero-badge">Eren Tarım Aletleri Güvencesiyle</div>
             <h1>Toprağı İşleyen Güç <br><span>Demirin Kalitesiyle Buluştu</span></h1>
             <p>Traktörünüzün performansını tam verimle toprağa yansıtır; en zorlu arazileri dahi ekime hazır hale getirir.</p>
             
@@ -105,24 +105,29 @@
             
             <div class="modern-gallery-grid">
                 <div class="gallery-card tall">
-                    <img src="tirmik1.jpg" alt="50lik Tırmık Arazi">
+					<img src="tirmik1.jpg" class="gallery-img" alt="">
                     <div class="card-overlay"><span>50'lik Dişi Tırmık Saha Performansı</span></div>
                 </div>
                 <div class="gallery-card">
-                    <img src="tirmik2.jpg" alt="Eren Tarım Üretim">
+					<img src="tirmik2.jpg" class="gallery-img" alt="">
                     <div class="card-overlay"><span>Yüksek Mukavemetli Diş Yapısı</span></div>
                 </div>
                 <div class="gallery-card">
-                    <img src="tirmik3.jpg" alt="Atölye Kaynak">
+					<img src="tirmik3.jpg" class="gallery-img" alt="">
                     <div class="card-overlay"><span>Hassas ve Güçlü İşçilik</span></div>
                 </div>
                 <div class="gallery-card wide">
-                    <img src="tirmik4.jpg" alt="Sevkiyat">
+					<img src="tirmik4.jpg" class="gallery-img" alt="">
                     <div class="card-overlay"><span>Teslime Hazır Ürünler</span></div>
                 </div>
             </div>
         </div>
     </section>
+	
+	<div id="lightbox">
+		<span id="close">&times;</span>
+		<img id="lightbox-img">
+	</div>
 
     <!-- İLETİŞİM BÖLÜMÜ -->
     <section id="contact" class="contact-section">
@@ -171,7 +176,27 @@
         const openBtn = document.getElementById('menuOpenBtn');
         const closeBtn = document.getElementById('menuCloseBtn');
         const sidebarItems = document.querySelectorAll('.sidebar-item');
+		const images = document.querySelectorAll('.gallery-img');
+		const lightbox = document.getElementById('lightbox');
+		const lightboxImg = document.getElementById('lightbox-img');
+		const closeLightbox = document.getElementById('close');
 
+		images.forEach(img => {
+			img.addEventListener('click', () => {
+				lightbox.style.display = 'flex';
+				lightboxImg.src = img.src;
+			});
+		});
+
+		closeLightbox.addEventListener('click', () => {
+			lightbox.style.display = 'none';
+		});
+
+		lightbox.addEventListener('click', (e) => {
+			if (e.target === lightbox) {
+				lightbox.style.display = 'none';
+			}
+		});
         openBtn.addEventListener('click', () => {
             sidebar.classList.add('active');
             overlay.classList.add('active');

@@ -42,7 +42,7 @@ body {
 }
 
 .brand-logo {
-    height: 62px;
+    height: 72px;
     width: auto;
     display: block;
 }
@@ -57,7 +57,7 @@ body {
     text-decoration: none;
     color: #0f172a;
     font-weight: 600;
-    font-size: 16px;
+    font-size: 18px;
     transition: color 0.2s;
 }
 

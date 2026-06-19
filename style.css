@@ -1,0 +1,423 @@
+/* GENEL KURUMSAL DEĞİŞKENLER */
+:root {
+    --logo-blue: #0022ff;     /* Logodaki amblem mavisi */
+    --logo-red: #e60000;      /* Logodaki canlı EREN kırmızısı */
+    --text-dark: #1e293b;
+    --text-muted: #64748b;
+    --font: 'Plus Jakarta Sans', sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font);
+    margin: 0;
+    padding: 0;
+    color: var(--text-dark);
+    background-color: #f8fafc;
+    overflow-x: hidden;
+}
+
+/* HEADER: LOGONUN BEYAZLIĞIYLA BÜTÜNLEŞEN BEYAZ ZEMİN */
+.main-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: #ffffff; 
+    z-index: 1000;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.header-container {
+    max-width: 1300px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 25px;
+    box-sizing: border-box;
+}
+
+.brand-logo {
+    height: 42px;
+    width: auto;
+    display: block;
+}
+
+.desktop-nav {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+}
+
+.desktop-nav a {
+    text-decoration: none;
+    color: #0f172a;
+    font-weight: 600;
+    font-size: 16px;
+    transition: color 0.2s;
+}
+
+.desktop-nav a:hover {
+    color: var(--logo-red);
+}
+
+/* "BİZİ ARAYIN" BUTONUNU REKABETE SOKMAMAK İÇİN SADELEŞTİRDİK */
+.desktop-nav .nav-phone {
+    background: transparent;
+    color: var(--logo-blue);
+    border: 2px solid var(--logo-blue);
+    padding: 8px 20px;
+    border-radius: 6px;
+    font-size: 14px;
+    transition: all 0.2s;
+}
+
+.desktop-nav .nav-phone:hover {
+    background: var(--logo-blue);
+    color: #fff;
+}
+
+/* MOBİL MENU BUTONU */
+.mobile-menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.mobile-menu-btn span {
+    display: block;
+    width: 24px;
+    height: 3px;
+    background: #334155;
+    border-radius: 2px;
+}
+
+/* YANDAN AÇILAN MOBİL PANEL */
+.sidebar {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 300px;
+    height: 100%;
+    background: #ffffff; 
+    z-index: 2000;
+    transition: right 0.4s ease;
+    padding: 35px 25px;
+    box-sizing: border-box;
+	display: flex;
+    flex-direction: column;
+	box-shadow: -10px 0 30px rgba(0,0,0,.15);
+}
+
+.sidebar.active { right: 0;margin-top: auto; }
+
+.sidebar-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(15, 23, 42, 0.6);
+    backdrop-filter: blur(4px);
+    z-index: 1999;
+    display: none;
+}
+
+.sidebar-overlay.active { display: block; }
+
+.sidebar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #e5e7eb;
+    padding-bottom: 15px;
+    margin-bottom: 30px;
+}
+
+.close-btn {
+    font-size: 28px;
+    width: 40px;
+    height: 40px;
+    background: none;
+    border: none;
+    color: #0f172a;
+    cursor: pointer;
+}
+
+.sidebar-links a {
+    display: block;
+    padding: 16px 0;
+    font-size: 18px;
+    font-weight: 600;
+    border-bottom: 1px solid #f1f5f9;
+    color: #0f172a;
+}
+
+.sidebar-actions {
+    margin-top: 35px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.side-btn {
+    text-align: center;
+    padding: 12px;
+    border-radius: 6px;
+    font-weight: 700;
+    font-size: 15px;
+    text-decoration: none;
+}
+
+.side-btn.phone { background: var(--logo-blue); color: #fff; }
+.side-btn.whatsapp { background: #25D366; color: #fff; }
+
+/* --- HERO ALANI: ÜCRETSİZ ARKA PLAN RESMİ VE KOYU KARARTMA FİLTRESİ --- */
+.hero-section {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    /* Unsplash üzerinden yüksek kaliteli, ücretsiz tarım arazisi resmi entegre edildi */
+    background-image: url('https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&q=80&w=1920');
+    background-size: cover;
+    background-position: center;
+}
+
+/* Resmin üzerine yazılar net okunsun diye çekilen modern koyu perde */
+.hero-overlay {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(15, 23, 42, 0.95) 40%, rgba(15, 23, 42, 0.6) 100%);
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 680px;
+    padding: 120px 25px 60px 25px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+@media(min-width: 992px) {
+    .hero-content { margin-left: 10%; text-align: left; padding-top: 60px; }
+}
+
+.hero-badge {
+    display: inline-block;
+    background: rgba(0, 34, 255, 0.15);
+    border: 1px solid rgba(0, 34, 255, 0.4);
+    color: #93c5fd;
+    padding: 6px 16px;
+    font-size: 13px;
+    font-weight: 700;
+    border-radius: 30px;
+    margin-bottom: 25px;
+}
+
+/* YAZILARI OKUNUR YAPMAK İÇİN RENKLERİ ARKA PLANA GÖRE DENGELEDİK */
+.hero-content h1 {
+    font-size: 48px;
+    font-weight: 800;
+    color: #ffffff; /* Ana başlık artık bembeyaz ve çok net */
+    line-height: 1.2;
+    margin: 0 0 20px 0;
+    letter-spacing: -1px;
+}
+
+/* Vurgulanacak kısım logo kırmızısı */
+.hero-content h1 span {
+    color: #ff4d4d; 
+}
+
+.hero-content p {
+    font-size: 17px;
+    color: #cbd5e1;
+    line-height: 1.6;
+    margin-bottom: 40px;
+}
+
+/* BUTONLARIN YAN YANA REKABETİNİ ÖNLEYEN NET TASARIM */
+.hero-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+@media(min-width: 992px) { .hero-buttons { justify-content: flex-start; } }
+
+.btn {
+    padding: 14px 32px;
+    font-size: 15px;
+    font-weight: 700;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Birinci öncelikli buton: Logodaki Mavi */
+.btn-primary { 
+    background: var(--logo-blue); 
+    color: #fff; 
+}
+.btn-primary:hover { 
+    background: #001ad9; 
+    transform: translateY(-2px);
+}
+
+/* WhatsApp Butonu: Orijinal yeşili ve temiz duruşu */
+.btn-secondary { 
+    background: #25D366; 
+    color: #fff; 
+}
+.btn-secondary:hover { 
+    background: #1ebd54; 
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(37, 211, 102, 0.3);
+}
+
+/* MODERN İÇERİK ALANLARI KONTROLÜ */
+.modern-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 80px 25px;
+}
+
+.sub-title {
+    font-size: 13px;
+    font-weight: 800;
+    color: var(--logo-blue);
+    letter-spacing: 2px;
+    display: block;
+    margin-bottom: 12px;
+}
+
+/* KURUMSAL BÖLÜM */
+.about-section { background: #fff; }
+.about-grid { display: grid; grid-template-columns: 1fr; gap: 40px; }
+
+@media(min-width: 768px) {
+    .about-grid { grid-template-columns: 1.1fr 2fr; gap: 70px; }
+}
+
+.about-title-side h2 {
+    font-size: 36px;
+    font-weight: 800;
+    color: #0f172a;
+    line-height: 1.25;
+    margin: 0;
+}
+
+.accent-line {
+    width: 60px;
+    height: 4px;
+    background: var(--logo-red);
+    margin-top: 20px;
+}
+
+.lead-text {
+    font-size: 19px;
+    font-weight: 600;
+    color: #1e293b;
+    line-height: 1.5;
+}
+
+.about-content-side p {
+    color: var(--text-muted);
+    line-height: 1.7;
+    font-size: 16px;
+}
+
+.modern-boxes { display: flex; gap: 20px; margin-top: 40px; }
+.m-box { flex: 1; background: #f8fafc; padding: 25px; border-radius: 8px; border-left: 3px solid var(--logo-blue); }
+.m-box h4 { margin: 0 0 10px 0; color: #0f172a; font-size: 17px; }
+
+/* GALERİ MATRİSİ */
+.center-title { text-align: center; margin-bottom: 50px; }
+.center-title h2 { font-size: 34px; font-weight: 800; color: #0f172a; margin: 0; }
+
+.modern-gallery-grid { display: grid; grid-template-columns: 1fr; gap: 20px; }
+
+@media(min-width: 768px) {
+    .modern-gallery-grid { grid-template-columns: repeat(3, 1fr); }
+    .gallery-card.tall { grid-row: span 2; }
+    .gallery-card.wide { grid-column: span 2; }
+}
+
+.gallery-card { position: relative; border-radius: 12px; overflow: hidden; height: 240px; }
+.gallery-card.tall { height: auto; min-height: 380px; }
+.gallery-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s; }
+
+.card-overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(to top, rgba(15, 23, 42, 0.9), transparent);
+    display: flex;
+    align-items: flex-end;
+    padding: 20px;
+    box-sizing: border-box;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+.card-overlay span { color: #fff; font-weight: 600; font-size: 15px; }
+.gallery-card:hover img { transform: scale(1.04); }
+.gallery-card:hover .card-overlay { opacity: 1; }
+
+/* İLETİŞİM BLOK KARTI */
+.contact-card-wrapper {
+    background: #0f172a;
+    border-radius: 20px;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+@media(min-width: 992px) { .contact-card-wrapper { flex-direction: row; } }
+
+.c-left { flex: 1.2; padding: 50px 40px; }
+.c-left h2 { font-size: 36px; font-weight: 800; margin: 10px 0 20px 0; }
+.c-left p { color: #94a3b8; line-height: 1.6; }
+.contact-items { margin: 35px 0; }
+
+.c-item { display: flex; align-items: center; gap: 15px; margin-bottom: 20px; }
+.c-item .icon { font-size: 20px; }
+.c-item p, .c-item a { color: #e2e8f0; font-size: 16px; text-decoration: none; margin: 0; }
+.c-item a:hover { color: var(--logo-red); }
+
+.maps-link { color: #38bdf8; text-decoration: none; font-weight: 700; }
+
+.c-right { flex: 1; background: rgba(255,255,255,0.02); padding: 50px 40px; border-left: 1px solid rgba(255,255,255,0.05); }
+.c-right h3 { margin-top: 0; font-size: 22px; margin-bottom: 25px; }
+
+.time-row { display: flex; justify-content: space-between; padding: 14px 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
+.time-row span:last-child { color: #34d399; font-weight: 600; }
+.time-row span.closed { color: #f87171; }
+
+.notice-card { margin-top: 35px; background: rgba(255,255,255,0.04); padding: 20px; border-radius: 8px; }
+.notice-card h5 { margin: 0 0 6px 0; font-size: 15px; color: #fbbf24; }
+.notice-card p { margin: 0; font-size: 14px; color: #94a3b8; line-height: 1.5; }
+
+/* FOOTER */
+.modern-footer { text-align: center; padding: 35px 20px; background: #f1f5f9; color: var(--text-muted); font-size: 14px; }
+
+/* RESPONSIVE */
+@media (max-width: 991px) {
+    .desktop-nav { display: none; }
+    .mobile-menu-btn { display: flex; }
+    .hero-content h1 { font-size: 34px; }
+    .modern-boxes { flex-direction: column; }
+    .contact-card-wrapper { flex-direction: column; }
+}
